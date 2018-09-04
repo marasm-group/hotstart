@@ -5,7 +5,6 @@ import org.apache.commons.lang3.SystemUtils;
 import org.marasm.hotstart.locationproviders.MacCacheLocationProvider;
 import org.marasm.hotstart.locationproviders.UnixCacheLocationProvider;
 import org.marasm.hotstart.locationproviders.WindowsCacheLocationProvider;
-import sun.jvm.hotspot.utilities.UnsupportedPlatformException;
 
 public class Utils {
 
@@ -22,5 +21,11 @@ public class Utils {
             return new UnixCacheLocationProvider();
         }
         throw new UnsupportedPlatformException(System.getProperty("os.name") + " is not supported!");
+    }
+
+    private static class UnsupportedPlatformException extends RuntimeException {
+        public UnsupportedPlatformException(String message) {
+            super(message);
+        }
     }
 }
